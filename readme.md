@@ -8,7 +8,7 @@
 
 These are installation instructions and scripts for deploying a 11ty application on a WHM-based VPS via rsync.
 
-The script will use rsync to add new files, delete removed files (keeping the default WHM/CP & SSL files), and set permissions on the added files (644) & directories (755).
+The script will run 11ty's build process (`npx @11ty/eleventy`), then use rsync to add new files, delete removed files (keeping the default WHM/CP & SSL files), and set permissions on the added files (644) & directories (755) on the VPS.
 
 This solution assumes a standard WHM/cPanel setup (using Apache, PHP managed by EA/MultiPHP, etc), and is specifically intended for MY servers. These concepts _could_ be adapted for general use by other stacks, but YMMV if you're not me.
 
@@ -19,15 +19,15 @@ This solution assumes a standard WHM/cPanel setup (using Apache, PHP managed by 
 
 Before installing, make sure you have set up the following with cPanel:
 
-- [ ] 1 - cPanel user with SSH access (for the whole cpanel account, site owner or whatever)
-  - [ ] 1a - (optional) SSH keys - I personally like to have an SSH key saved locally so I'm not prompted for a password
+- 1 - cPanel user with SSH access (for the whole cpanel account, site owner or whatever)
+  - 1a - (optional) SSH keys - I personally like to have an SSH key saved locally so I'm not prompted for a password
     - Do this as root to copy from another site:
     - ```mv /home/example/.ssh /home/example/.ssh_bk```
     - ```cp -R /home/othersite/.ssh /home/example```
     - ```chown -R example:example /home/example/.ssh```
 
 
-- [ ] 2 - Root domain (`example.com`) or whatever subdomains (`staging.example.com`, `dev.example.com`, etc)
+- 2 - Root domain (`example.com`) or whatever subdomains (`staging.example.com`, `dev.example.com`, etc)
   - Note the docroots for your domain (to use in the config below)
   - Probably a good idea to choose "Force HTTPS Redirect" on the cPanel Domains screen.
 
