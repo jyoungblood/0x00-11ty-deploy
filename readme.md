@@ -22,14 +22,15 @@ Before installing, make sure you have set up the following with cPanel:
 - 1 - cPanel user with SSH access (for the whole cpanel account, site owner or whatever)
   - 1a - (optional) SSH keys - I personally like to have an SSH key saved locally so I'm not prompted for a password
     - Do this as root to copy from another site:
-    - ```mv /home/example/.ssh /home/example/.ssh_bk```
+    - ```mv /home/example/.ssh /home/example/.ssh_bk``` _(extremely optional)_
     - ```cp -R /home/othersite/.ssh /home/example```
     - ```chown -R example:example /home/example/.ssh```
-
+  - Otherwise you'll want to generate and install SSH keys both on the server and your local machine [(example here)](https://www.cyberciti.biz/faq/how-to-set-up-ssh-keys-on-linux-unix/)
 
 - 2 - Root domain (`example.com`) or whatever subdomains (`staging.example.com`, `dev.example.com`, etc)
   - Note the docroots for your domain (to use in the config below)
   - Probably a good idea to choose "Force HTTPS Redirect" on the cPanel Domains screen.
+  - Also in cPanel - "optimize website" / enable compression
 
 
 
